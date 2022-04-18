@@ -18,6 +18,8 @@ extern "C" {
 #define HTTPERROR_CURL_INIT         3   // curl init失败
 #define HTTPERROR_CURL_PERFORM      4   // curl preform失败
 #define HTTPERROR_BUFF_NOTENOUGH    5   // 输入缓存不足
+#define HTTPERROR_OPERATION_TIMEDOUT    6   // 请求超时
+#define HTTPERROR_COULDNT_CONNECT   7   // 服务器不能连接
 
 typedef int (*HTTP_REPLY_CONTENT_FUNC)(const char* buffer, int len, void* arg);
 typedef enum {

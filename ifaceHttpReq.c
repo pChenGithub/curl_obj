@@ -133,7 +133,12 @@ int httpReq(HTTP_REPLY_TYPE type, const char *url, char *data, const int len)
     if (res!=CURLE_OK)
     {
         printf("perform error %d\n", res);
-        ret = -HTTPERROR_CURL_PERFORM;
+        if (CURLE_COULDNT_CONNECT==res)
+            ret = -HTTPERROR_COULDNT_CONNECT;
+        else if (CURLE_OPERATION_TIMEDOUT==res)
+            ret = -HTTPERROR_OPERATION_TIMEDOUT;
+        else
+            ret = -HTTPERROR_CURL_PERFORM;
     }
 
 curlInitError:
